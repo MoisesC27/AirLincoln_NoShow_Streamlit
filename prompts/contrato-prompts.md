@@ -1,237 +1,123 @@
-# Contrato del prompt — Equipo 4
+# Registro de prompts — Equipo 4
 
-## Qué debe mostrar
+## Bloque 1 — Primera iteración del dashboard
 
-Nuestro producto es un dashboard interactivo desarrollado en Streamlit para **Air Lincoln**. Su propósito es ayudar a tomar decisiones relacionadas con el No-show y la sobreventa de vuelos usando la información histórica disponible del equipo.
+### Prompt 1
 
-La idea no es mostrar únicamente gráficas o indicadores, sino permitir que un usuario pueda plantear un escenario de vuelo, observar el riesgo asociado y entender qué decisión podría tomar a partir de los resultados.
+**Etapa SDLC:** Planeación y diseño
 
-El dashboard parte de un conjunto de **10,000 pasajeros históricos** y debe mostrar de forma clara el comportamiento del No-show, los factores que pueden modificar el riesgo y el impacto económico de vender más boletos que los asientos disponibles.
+**Objetivo:** definir qué problema debía resolver el dashboard, qué información debía mostrar y qué decisión debía permitir tomar.
 
-### Usuarios del dashboard
+**Prompt utilizado:**
 
-El cliente principal del producto es **Air Lincoln**, pero dentro de la aerolínea identificamos tres perfiles de usuario con necesidades diferentes.
+> Ayúdame a definir la primera versión de un dashboard en Streamlit para Air Lincoln utilizando un dataset histórico de pasajeros y No-show. El producto debe permitir analizar la sobreventa de vuelos y ayudar a decidir cuántos boletos adicionales vender considerando el riesgo para el pasajero y el costo esperado.
+>
+> El dashboard debe estar pensado para tres perfiles: Planificación, Experiencia del pasajero y Operación y calidad. Propón qué información necesita cada usuario, qué controles debe tener el dashboard y qué resultados deberían mostrarse.
 
-**Laura — Planificación**
+**Qué devolvió:**
 
-Laura representa al área encargada de planear la capacidad de los vuelos. Su principal interés es decidir **cuántos boletos adicionales conviene vender** sin aumentar demasiado el riesgo de dejar pasajeros sin asiento.
+El modelo propuso una estructura inicial del producto con controles para configurar un vuelo, indicadores relacionados con No-show, costos y riesgo, así como una recomendación de sobreventa.
 
-Para ella, el dashboard debe mostrar principalmente:
+También sugirió organizar la información de acuerdo con las necesidades de diferentes usuarios.
 
-- sobreventa recomendada;
-- número total de boletos frente a los asientos disponibles;
-- probabilidad estimada de No-show;
-- costo esperado;
-- ahorro frente a no aplicar sobreventa;
-- riesgo de negar abordaje.
+**Qué verificamos:**
 
-La decisión que habilita para este perfil es:
+Revisamos que las variables propuestas tuvieran relación con el dataset y con el problema trabajado durante el proyecto.
 
-**¿Cuántos boletos adicionales conviene vender bajo las condiciones actuales del vuelo?**
+También verificamos que la recomendación principal estuviera relacionada con una decisión que realmente pudiera tomar un usuario de Air Lincoln.
 
----
+**Qué cambiamos de lo que devolvió:**
 
-**Armando — Experiencia del pasajero**
+Reducimos la cantidad de información mostrada en la vista principal y priorizamos los resultados necesarios para tomar una decisión.
 
-Armando representa al área de experiencia del pasajero. Su interés no es únicamente aumentar el aprovechamiento del vuelo, sino entender qué impacto puede tener una decisión de sobreventa sobre los clientes.
+También modificamos los perfiles de usuario y la forma de presentar los indicadores para que fueran consistentes con nuestro proyecto.
 
-Para este usuario es importante observar:
+**Qué decidimos nosotros y no el modelo:**
 
-- riesgo de que algún pasajero no tenga asiento;
-- escenarios en los que la sobreventa deja de ser conveniente;
-- cambios en el riesgo cuando se modifican las condiciones del vuelo;
-- posibles costos asociados con negar abordaje.
+El equipo decidió que el objetivo principal del producto sería responder:
 
-La decisión que habilita para este perfil es:
+**¿Cuántos boletos adicionales conviene vender para un vuelo específico?**
 
-**¿El beneficio de vender boletos adicionales justifica el riesgo que se está generando para el pasajero?**
+También decidimos utilizar tres perfiles principales:
 
----
+- Laura — Planificación.
+- Armando — Experiencia del pasajero.
+- Anna — Operación y calidad.
 
-**Anna — Operación y calidad**
-
-Anna representa al área de operación y calidad. Su función es revisar si la recomendación es razonable considerando las condiciones reales del vuelo y detectar escenarios que requieren mayor atención.
-
-Para este perfil, el dashboard debe facilitar la revisión de factores como:
-
-- día y horario del vuelo;
-- salida desde un hub;
-- tipo de destino;
-- condiciones climáticas;
-- comportamiento histórico del No-show;
-- nivel de riesgo del escenario seleccionado.
-
-La decisión que habilita para este perfil es:
-
-**¿Las condiciones operativas del vuelo hacen recomendable mantener la estrategia propuesta o requieren una revisión adicional?**
+El equipo definió qué significado tendría cada perfil y qué decisiones debía poder tomar dentro del dashboard.
 
 ---
 
-## Componentes principales del dashboard
+### Prompt 2
 
-La primera pantalla debe funcionar como un **simulador de sobreventa**.
+**Etapa SDLC:** Implementación
 
-El usuario podrá configurar un vuelo mediante:
+**Objetivo:** construir una primera versión funcional del dashboard en Streamlit a partir del diseño planteado.
 
-- día del vuelo;
-- horario;
-- salida desde un hub;
-- tipo de destino;
-- pronóstico del clima;
-- número de asientos disponibles;
-- costo estimado de un asiento vacío;
-- costo asociado con negar abordaje.
+**Prompt utilizado:**
 
-Al modificar estos valores, el dashboard debe actualizar los resultados del escenario.
+> Desarrolla una primera versión funcional en Streamlit del dashboard de Air Lincoln.
+>
+> La pantalla principal debe funcionar como un simulador de sobreventa y permitir seleccionar día, horario, salida desde un hub, tipo de destino y pronóstico del clima.
+>
+> También debe permitir introducir el número de asientos, el costo de un asiento vacío y el costo de negar abordaje.
+>
+> Muestra una recomendación de boletos adicionales, pasajeros que probablemente no llegarán, riesgo de dejar a alguien sin asiento y ahorro esperado.
+>
+> Incluye una gráfica donde el eje X represente boletos adicionales y el eje Y el costo esperado en MXN. Diferencia visualmente zonas de riesgo bajo, medio y alto y marca la recomendación encontrada.
 
-Los principales resultados que debe mostrar son:
+**Qué devolvió:**
 
-- cantidad recomendada de boletos adicionales;
-- total de boletos que se venderían;
-- porcentaje estimado de pasajeros que no llegarán;
-- riesgo de dejar a algún pasajero sin asiento;
-- ahorro esperado frente a una estrategia sin sobreventa;
-- costo esperado para distintos niveles de sobreventa.
+El modelo generó una estructura inicial para implementar el simulador en Streamlit, incluyendo controles, indicadores y una visualización del costo esperado.
 
-Además del simulador, el producto debe incluir un **mapa de riesgo** que permita observar y comparar escenarios para entender en qué condiciones una estrategia puede ser más o menos conveniente.
+**Qué verificamos:**
 
-La decisión general que habilita el producto es:
+Ejecutamos la aplicación localmente y comprobamos que los controles modificaran los resultados.
 
-**¿Qué nivel de sobreventa ofrece el mejor equilibrio entre aprovechar la capacidad del vuelo, reducir el costo de asientos vacíos y mantener controlado el riesgo para los pasajeros?**
+También revisamos que las unidades, costos, porcentajes y cantidad de boletos fueran comprensibles para un usuario.
 
----
+**Qué cambiamos de lo que devolvió:**
 
-## El diseño de lo que debe arrojar
+Se reorganizó la interfaz para mostrar primero la recomendación de sobreventa y después los indicadores de riesgo y costo.
 
-La información debe presentarse de manera que el usuario pueda comprender primero la recomendación y después revisar por qué se obtuvo.
+También se modificó la gráfica para destacar el punto recomendado y diferenciar las zonas de riesgo.
 
-En la parte superior debe aparecer la recomendación principal:
+**Qué decidimos nosotros y no el modelo:**
 
-1. **Sobreventa recomendada**, expresada en boletos adicionales.
-2. **Boletos totales**, comparados con la cantidad de asientos disponibles.
+El equipo decidió la jerarquía final de la pantalla, qué indicadores serían prioritarios y cómo debía interpretarse una recomendación de sobreventa.
 
-Debajo deben mostrarse los indicadores que ayudan a evaluar la recomendación:
-
-3. **Pasajeros que probablemente no llegarán**, expresado como porcentaje.
-4. **Riesgo de dejar a alguien sin asiento**, expresado como porcentaje.
-5. **Ahorro esperado**, expresado en MXN.
-
-Después debe aparecer una gráfica de análisis económico.
-
-### Gráfica de costo esperado
-
-La gráfica debe utilizar:
-
-- **Eje X:** cantidad de boletos adicionales.
-- **Eje Y:** costo esperado en MXN.
-
-También debe mostrar:
-
-- zona de riesgo bajo;
-- zona de riesgo medio;
-- zona de riesgo alto;
-- punto recomendado;
-- costo esperado para cada nivel de sobreventa.
-
-La recomendación debe quedar resaltada visualmente para que el usuario pueda identificarla sin tener que interpretar toda la gráfica.
-
-Finalmente, el dashboard debe permitir consultar el **mapa de riesgo**, donde se puedan comparar diferentes condiciones del vuelo y detectar escenarios que requieren mayor atención.
+También decidimos que el producto no debía mostrar solamente una predicción, sino ayudar a comparar el beneficio económico contra el riesgo para el pasajero.
 
 ---
 
-## Objetivo de negocio
+### Prompt 3
 
-La situación base consiste en operar el vuelo sin utilizar una recomendación analítica de sobreventa, lo que puede provocar que algunos asientos queden vacíos cuando pasajeros con reservación no se presentan.
+**Etapa SDLC:** Pruebas y revisión
 
-La meta del producto es utilizar la información histórica de No-show para encontrar un mejor equilibrio entre el aprovechamiento de la capacidad del vuelo y el riesgo de vender más boletos que los asientos disponibles.
+**Objetivo:** revisar la primera iteración y detectar mejoras antes de publicar el dashboard.
 
-No buscamos eliminar completamente el riesgo, sino hacerlo visible y permitir que el usuario compare el beneficio económico con las posibles consecuencias para el pasajero.
+**Prompt utilizado:**
 
-La decisión principal que habilita el dashboard es determinar **cuántos boletos adicionales vender para un vuelo específico considerando sus condiciones y costos**.
+> Revisa esta primera versión del dashboard de Air Lincoln como si fueras un usuario de negocio. Identifica problemas de claridad, jerarquía visual, interpretación de indicadores y facilidad para tomar la decisión de cuántos boletos adicionales vender.
+>
+> No cambies el objetivo del producto. Propón únicamente mejoras que hagan más clara la decisión.
 
----
+**Qué devolvió:**
 
-## El prompt, literal
+El modelo sugirió mejorar la jerarquía de los indicadores, aclarar algunos títulos, separar mejor los controles de entrada de los resultados y hacer más visible la recomendación principal.
 
-Desarrolla un dashboard interactivo en Streamlit para Air Lincoln utilizando un dataset de 10,000 pasajeros históricos.
+**Qué verificamos:**
 
-El producto debe apoyar decisiones relacionadas con No-show y sobreventa de vuelos. No debe limitarse a mostrar gráficas descriptivas; debe permitir que el usuario configure un escenario y obtenga una recomendación clara.
+El equipo revisó cada sugerencia y comparó las propuestas con el objetivo original y con la retroalimentación recibida durante la presentación del proyecto.
 
-El dashboard debe considerar tres perfiles de usuario:
+**Qué cambiamos de lo que devolvió:**
 
-- Planificación, que necesita decidir cuántos boletos adicionales vender.
-- Experiencia del pasajero, que necesita evaluar el riesgo de afectar a pasajeros por una sobreventa.
-- Operación y calidad, que necesita revisar si las condiciones operativas del vuelo hacen razonable la recomendación.
+Se conservaron únicamente las recomendaciones que mejoraban la lectura del producto sin modificar la lógica definida por el equipo.
 
-La pantalla principal debe funcionar como un simulador de sobreventa.
+Se ajustaron textos, tamaños, distribución de componentes y la forma de presentar el riesgo y el ahorro esperado.
 
-Permite seleccionar:
+**Qué decidimos nosotros y no el modelo:**
 
-- día;
-- horario;
-- salida desde un hub;
-- destino nacional o internacional;
-- pronóstico del clima;
-- número de asientos;
-- costo de un asiento vacío;
-- costo de negar abordaje.
+El equipo decidió qué recomendaciones aplicar y cuáles descartar.
 
-A partir de estas entradas, muestra:
-
-- sobreventa recomendada;
-- boletos totales frente a asientos disponibles;
-- porcentaje estimado de pasajeros que no llegarán;
-- riesgo de dejar a alguien sin asiento;
-- ahorro esperado frente a no aplicar sobreventa.
-
-Incluye una gráfica de costo esperado según la cantidad de boletos adicionales. El eje X debe representar boletos adicionales y el eje Y costo esperado en MXN.
-
-La gráfica debe diferenciar visualmente zonas de riesgo bajo, medio y alto y marcar la recomendación encontrada.
-
-Agrega también un mapa de riesgo para comparar escenarios y entender qué combinaciones de condiciones presentan mayor riesgo.
-
-La interfaz debe ser clara, compacta y orientada a la toma de decisiones. La recomendación debe aparecer primero y después la información necesaria para entender y evaluar esa recomendación.
-
-El objetivo final es que el usuario pueda responder:
-
-**¿Cuántos boletos adicionales conviene vender y qué riesgo implica hacerlo?**
-
----
-
-## Qué devolvió
-
-El modelo generó una primera propuesta funcional del dashboard con un simulador de sobreventa, controles para configurar las condiciones del vuelo, indicadores de riesgo y costo, una recomendación de boletos adicionales y una gráfica para comparar distintos niveles de sobreventa.
-
-También propuso una organización visual para presentar primero la recomendación y después los elementos utilizados para evaluarla.
-
----
-
-## Qué cambiamos de lo que devolvió
-
-A partir de la primera versión realizamos cambios para que el producto estuviera más relacionado con el problema específico de Air Lincoln y con las decisiones que buscamos apoyar.
-
-Ajustamos la organización de la pantalla, los textos, la forma de presentar la recomendación, los niveles de riesgo y los costos.
-
-También incorporamos y refinamos los controles utilizados para representar las condiciones del vuelo y revisamos qué información era realmente útil para cada perfil de usuario.
-
-El equipo decidió conservar una vista principal enfocada en el simulador de sobreventa y una vista adicional para analizar el riesgo de distintos escenarios.
-
----
-
-## Qué decidimos nosotros y no el modelo
-
-El equipo definió el objetivo final del producto y la forma en que debía utilizarse dentro del contexto de Air Lincoln.
-
-Nosotros decidimos:
-
-- que la decisión principal sería determinar cuántos boletos adicionales vender;
-- que el producto debía considerar tanto el beneficio económico como el riesgo para el pasajero;
-- que existirían tres perfiles principales de usuario: Planificación, Experiencia del pasajero y Operación y calidad;
-- qué variables del proyecto eran relevantes para configurar un escenario;
-- qué costos utilizar en el simulador;
-- cómo interpretar los niveles de riesgo;
-- qué resultados debían mostrarse primero;
-- qué información debía aparecer en cada vista;
-- qué elementos de las propuestas del modelo conservar, modificar o eliminar.
-
-El modelo se utilizó como apoyo para construir y revisar la primera iteración, pero las decisiones sobre el significado del producto, los usuarios, las variables y la forma final del dashboard fueron tomadas por el equipo.
+La versión final de esta primera iteración, los valores mostrados, los perfiles de usuario y la decisión habilitada por el dashboard fueron definidos y revisados por el equipo.
