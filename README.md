@@ -27,6 +27,12 @@ Pruebas de cálculo: `.venv\Scripts\python.exe -m pip install pytest` y luego `.
 
 ## Inicio de sesión (opcional)
 
-Sin configuración la app funciona como vista pública (solo agregados). Para activar OIDC, roles y seudónimos,
-copia `.streamlit/secrets.toml.example` como `.streamlit/secrets.toml` y complétalo. En Streamlit Community Cloud,
-pega el contenido en *Settings → Secrets*.
+## Dashboard público
+
+Primera iteración del dashboard de Air Lincoln:
+
+https://TU-URL-DE-STREAMLIT.streamlit.app
+
+### Decisión que habilita
+
+El dashboard ayuda a estimar cuántos boletos adicionales conviene vender para un vuelo considerando el riesgo de No-show, el costo de asientos vacíos y el riesgo de negar abordaje.
