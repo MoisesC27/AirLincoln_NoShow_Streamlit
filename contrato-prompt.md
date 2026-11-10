@@ -46,6 +46,21 @@ La decisión que habilita para este perfil es:
 
 **¿El beneficio de vender boletos adicionales justifica el riesgo que se está generando para el pasajero?**
 
+Además, cuando la decisión operativa requiere identificar a una persona concreta, Armando puede consultar una vista priorizada de pasajeros con mayor riesgo.
+
+Esta vista muestra únicamente la información necesaria para realizar una acción:
+
+- identificador del pasajero;
+- probabilidad estimada de No-show;
+- principal motivo de riesgo;
+- acción preventiva sugerida.
+
+La información individual se utiliza únicamente cuando la acción requiere identificar al pasajero. Para el análisis general del producto se mantienen resultados agregados.
+
+Esta vista permite responder una decisión adicional:
+
+**¿A qué pasajeros conviene contactar primero y qué acción preventiva debería realizarse?**
+
 ---
 
 **Anna — Operación y calidad**
