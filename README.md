@@ -47,3 +47,18 @@ Cómo se rompió a propósito:
 1. Rama `prueba-dato-roto`: en la fila 6 del CSV, `No_Show` se cambió de `0` a `abc`.
 2. Push → la acción falló con «No_Show: 1 valores con texto en una columna numérica».
 3. Se borró la rama; `main` sigue en verde.
+
+## Evidencia de validación automática
+
+El proyecto utiliza GitHub Actions para verificar la calidad de los datos antes de aceptar cambios.
+
+Se realizaron dos pruebas:
+
+- **Prueba exitosa:** el pipeline validó correctamente los datos originales en la rama `main`.
+- **Prueba fallida intencional:** se modificó un valor de la columna `No_Show`, sustituyendo un valor numérico por `abc`, en la rama `prueba-dato-roto`.
+
+El objetivo fue comprobar que el sistema identifica datos que incumplen el contrato establecido y detiene la validación.
+
+**Evidencia de ejecución fallida:** [Pegar aquí el enlace real de GitHub Actions].
+
+La rama principal conserva los datos correctos y no incorpora la modificación utilizada en la prueba.
