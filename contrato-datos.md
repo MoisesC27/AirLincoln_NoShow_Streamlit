@@ -5,7 +5,10 @@ La revisión corre **antes de dibujar el tablero** (`app.py`) y en **cada cambio
 
 ## Decisiones sobre celdas vacías
 
-> Propuesta del equipo. Pendiente de confirmar en clase.
+> **Decisiones aprobadas por el equipo.** Se establecieron reglas para identificar y tratar los valores faltantes, los datos que no aplican, las columnas calculadas y los valores inválidos. Estas reglas se documentan en el contrato de datos y se comprueban mediante las validaciones automáticas del proyecto.
+
+
+Las siguientes reglas documentan el tratamiento propuesto para los valores faltantes del conjunto de datos. Estas decisiones permiten distinguir entre información no registrada, valores que no aplican y datos que deben calcularse nuevamente. Su aplicación se verifica mediante el contrato de datos y las pruebas del proyecto.
 
 | Significado | Qué hace el tablero | Columnas |
 |---|---|---|
