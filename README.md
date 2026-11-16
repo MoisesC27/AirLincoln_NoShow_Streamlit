@@ -62,3 +62,25 @@ El objetivo fue comprobar que el sistema identifica datos que incumplen el contr
 **Evidencia de ejecución fallida:** [Pegar aquí el enlace real de GitHub Actions].
 
 La rama principal conserva los datos correctos y no incorpora la modificación utilizada en la prueba.
+
+## Evidencia del pipeline de validación
+
+El proyecto utiliza GitHub Actions para ejecutar pruebas automáticas que verifican la calidad de los datos.
+
+### Ejecución correcta
+
+Se ejecutó el pipeline con los datos originales en la rama `main`, obteniendo un resultado exitoso.
+
+### Prueba con datos incorrectos
+
+Se creó la rama `prueba-dato-roto` para comprobar el comportamiento del pipeline ante datos que no cumplen el contrato.
+
+En esta prueba se modificó un valor de la columna `No_Show`, sustituyendo un valor numérico por `abc`.
+
+El pipeline generó una ejecución fallida.
+
+**Enlace a la ejecución fallida:**
+
+PEGAR_AQUI_LA_URL_REAL
+
+La modificación de prueba no se incorporó a la rama principal.
