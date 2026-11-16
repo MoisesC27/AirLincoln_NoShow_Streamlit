@@ -1,0 +1,63 @@
+vuelo,origen,ciudad_origen,destino,ciudad_destino,salida,dias,avion,asientos,sale_de_hub,internacional
+AL 100,TIJ,Tijuana,MEX,Ciudad de México,06:00,1234567,A321neo,230,0,0
+AL 102,MEX,Ciudad de México,CUN,Cancún,06:10,1234567,A321neo,230,1,0
+AL 104,MID,Mérida,MEX,Ciudad de México,06:20,1234567,Embraer E190,99,0,0
+AL 106,MEX,Ciudad de México,MTY,Monterrey,06:30,1234567,Boeing 737-8,166,1,0
+AL 108,CJS,Ciudad Juárez,GDL,Guadalajara,06:35,1234567,Embraer E190,99,0,0
+AL 110,GDL,Guadalajara,TIJ,Tijuana,06:45,1234567,A320neo,186,1,0
+AL 112,MTY,Monterrey,DFW,Dallas,06:55,1234567,Embraer E175,76,1,1
+AL 114,MEX,Ciudad de México,GDL,Guadalajara,07:00,1234567,Boeing 737-8,166,1,0
+AL 116,BJX,León/Bajío,MEX,Ciudad de México,07:15,12345,Embraer E170,76,0,0
+AL 118,MEX,Ciudad de México,ORD,Chicago,07:25,1234567,Boeing 737-8,166,1,1
+AL 120,CUN,Cancún,MEX,Ciudad de México,07:30,1234567,A321neo,230,0,0
+AL 122,MEX,Ciudad de México,OAX,Oaxaca,07:40,1234567,Embraer E170,76,1,0
+AL 124,GDL,Guadalajara,LAX,Los Ángeles,07:50,1234567,A320neo,186,1,1
+AL 126,GDL,Guadalajara,MTY,Monterrey,08:10,12345,Embraer E190,99,1,0
+AL 128,MEX,Ciudad de México,TIJ,Tijuana,08:20,1234567,A321neo,230,1,0
+AL 130,QRO,Querétaro,IAH,Houston,08:35,12345,Embraer E175,76,0,1
+AL 132,MEX,Ciudad de México,LAX,Los Ángeles,08:45,1234567,Boeing 737-8,166,1,1
+AL 134,HMO,Hermosillo,PHX,Phoenix,09:05,1357,Embraer E175,76,0,1
+AL 136,MEX,Ciudad de México,MID,Mérida,09:15,1234567,Embraer E190,99,1,0
+AL 138,GDL,Guadalajara,CUN,Cancún,09:30,1234567,A320neo,186,1,0
+AL 140,MEX,Ciudad de México,PVR,Puerto Vallarta,09:50,1234567,A320neo,186,1,0
+AL 142,MTY,Monterrey,CUN,Cancún,10:15,1234567,A320neo,186,1,0
+AL 144,OAX,Oaxaca,MEX,Ciudad de México,10:20,1234567,Embraer E170,76,0,0
+AL 146,MEX,Ciudad de México,CUN,Cancún,10:40,1234567,A321neo,230,1,0
+AL 148,MEX,Ciudad de México,SJD,Los Cabos,11:00,1234567,A320neo,186,1,0
+AL 150,GDL,Guadalajara,ORD,Chicago,11:20,1234567,Boeing 737-8,166,1,1
+AL 152,CUN,Cancún,MIA,Miami,11:45,1234567,Boeing 737-8,166,0,1
+AL 154,MEX,Ciudad de México,MTY,Monterrey,12:10,1234567,Boeing 737-8,166,1,0
+AL 156,MTY,Monterrey,IAH,Houston,12:35,1234567,Embraer E175,76,1,1
+AL 158,MEX,Ciudad de México,MIA,Miami,12:40,1234567,A321neo,230,1,1
+AL 160,PVR,Puerto Vallarta,LAX,Los Ángeles,12:50,1234567,A320neo,186,0,1
+AL 162,CUN,Cancún,MEX,Ciudad de México,13:00,1234567,A321neo,230,0,0
+AL 164,MEX,Ciudad de México,BOG,Bogotá,13:15,1357,Boeing 737-8,166,1,1
+AL 166,MEX,Ciudad de México,GDL,Guadalajara,13:30,1234567,Boeing 737-8,166,1,0
+AL 168,SJD,Los Cabos,LAX,Los Ángeles,13:40,4567,A320neo,186,0,1
+AL 170,MEX,Ciudad de México,OAX,Oaxaca,14:05,1234567,Embraer E170,76,1,0
+AL 172,CUN,Cancún,DFW,Dallas,14:20,1234567,Boeing 737-8,166,0,1
+AL 174,GDL,Guadalajara,TIJ,Tijuana,14:30,1234567,A320neo,186,1,0
+AL 176,MTY,Monterrey,TIJ,Tijuana,15:10,1234567,A320neo,186,1,0
+AL 178,MEX,Ciudad de México,CUN,Cancún,15:20,1234567,A321neo,230,1,0
+AL 180,GDL,Guadalajara,LAX,Los Ángeles,15:40,1234567,A320neo,186,1,1
+AL 182,MEX,Ciudad de México,LAX,Los Ángeles,16:10,1234567,Boeing 737-8,166,1,1
+AL 184,MEX,Ciudad de México,MID,Mérida,16:30,1234567,Embraer E190,99,1,0
+AL 186,GDL,Guadalajara,CUN,Cancún,16:55,567,A320neo,186,1,0
+AL 188,OAX,Oaxaca,MEX,Ciudad de México,17:00,1234567,Embraer E170,76,0,0
+AL 190,MTY,Monterrey,DFW,Dallas,17:20,1234567,Embraer E175,76,1,1
+AL 192,MEX,Ciudad de México,TIJ,Tijuana,17:45,1234567,A321neo,230,1,0
+AL 194,MEX,Ciudad de México,SJD,Los Cabos,18:20,4567,A320neo,186,1,0
+AL 196,PVR,Puerto Vallarta,DFW,Dallas,18:25,567,Embraer E175,76,0,1
+AL 198,MEX,Ciudad de México,MTY,Monterrey,18:40,1234567,Boeing 737-8,166,1,0
+AL 200,MID,Mérida,MEX,Ciudad de México,18:50,1234567,Embraer E190,99,0,0
+AL 202,GDL,Guadalajara,MTY,Monterrey,19:05,12345,Embraer E190,99,1,0
+AL 204,BJX,León/Bajío,MEX,Ciudad de México,19:30,12345,Embraer E170,76,0,0
+AL 206,CUN,Cancún,LAX,Los Ángeles,19:40,1234567,A320neo,186,0,1
+AL 208,MEX,Ciudad de México,CUN,Cancún,19:55,1234567,A321neo,230,1,0
+AL 210,MEX,Ciudad de México,GDL,Guadalajara,20:15,1234567,Boeing 737-8,166,1,0
+AL 212,GDL,Guadalajara,TIJ,Tijuana,20:40,1234567,A320neo,186,1,0
+AL 214,CUN,Cancún,MEX,Ciudad de México,21:15,1234567,A321neo,230,0,0
+AL 216,MEX,Ciudad de México,MAD,Madrid,21:40,1234567,Boeing 787-9,274,1,1
+AL 218,MEX,Ciudad de México,MTY,Monterrey,21:50,12345,Boeing 737-8,166,1,0
+AL 220,TIJ,Tijuana,MEX,Ciudad de México,23:10,1234567,A321neo,230,0,0
+AL 222,MEX,Ciudad de México,JFK,Nueva York,23:30,1234567,Boeing 787-8,243,1,1

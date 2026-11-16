@@ -68,3 +68,20 @@ def test_gate_not_blocked(ctx):
     df, _, tm = ctx
     status, _ = gate(run_checks(df, tm.metrics, tm.selected))
     assert status in ("Aceptado", "Aceptado con observaciones")
+
+
+def test_itinerario_cumple_contrato():
+    from core import flights
+    vuelos, probs = flights.load()
+    assert probs == [] and len(vuelos) >= 30
+    assert all(20 <= v[8] <= 600 and v[11] in (1, 2, 3) for v in vuelos)
+
+
+def test_itinerario_detecta_errores():
+    import pandas as pd
+    from core import flights
+    df = pd.read_csv(flights.PATH, dtype={"dias": str, "salida": str})
+    df.loc[0, "asientos"] = 9000
+    df.loc[1, "salida"] = "7am"
+    probs = flights.check(df)
+    assert any("asientos" in p for p in probs) and any("salida" in p for p in probs)

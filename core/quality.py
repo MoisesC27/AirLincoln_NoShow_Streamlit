@@ -53,6 +53,11 @@ def run_checks(df: pd.DataFrame, metrics: pd.DataFrame, selected: str) -> pd.Dat
         "Indican que el CSV se unió desde varias partes; sin limpiarlos, esos Customer_ID se leen como vacíos.",
         "Ninguna." if bom == 0 else "Exportar el archivo de nuevo en una sola pieza.")
 
+    inv = int(df.attrs.get("invalid_rows", 0))
+    add("Filas con datos inválidos", f"{inv} filas excluidas del análisis", OK if inv == 0 else WARN, "Alta",
+        "Texto en columnas numéricas, decimales o códigos fuera de rango producirían cifras falsas.",
+        "Ninguna." if inv == 0 else "Corregir esas filas en el archivo de origen y volver a cargarlo.")
+
     bad = invalid_values(df)
     add("Valores dentro del diccionario", "Todos válidos" if not bad else "; ".join(f"{k}: {v}" for k, v in bad.items()),
         OK if not bad else FAIL, "Crítica", "Un código desconocido no tiene coeficiente en el modelo.",

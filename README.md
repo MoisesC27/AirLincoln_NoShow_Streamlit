@@ -1,4 +1,3 @@
-https://airlincolnnoshowapp-wmhdr236rczouegkvt8wcv.streamlit.app/
 # Air Lincoln · Inteligencia de No-show (Streamlit)
 
 ## Ejecutar en Visual Studio Code (Windows)
@@ -28,21 +27,23 @@ Pruebas de cálculo: `.venv\Scripts\python.exe -m pip install pytest` y luego `.
 
 ## Inicio de sesión (opcional)
 
-## Dashboard público
+Sin configuración la app funciona como vista pública (solo agregados). Para activar OIDC, roles y seudónimos,
+copia `.streamlit/secrets.toml.example` como `.streamlit/secrets.toml` y complétalo. En Streamlit Community Cloud,
+pega el contenido en *Settings → Secrets*.
 
-Primera iteración del dashboard de Air Lincoln:
+## Pipeline de validación de datos (Entregable 2)
 
-https://airlincolnnoshowapp-wmhdr236rczouegkvt8wcv.streamlit.app/
+En cada push y pull request, GitHub Actions (`.github/workflows/validar-datos.yml`):
+1. valida `data/AIRLINCOLNDATA2.csv` contra el contrato (`python scripts/validar_datos.py`);
+2. corre las pruebas (`python -m pytest -q`).
 
-### Decisión que habilita
+Si el dato se rompe (texto en una columna numérica, código fuera de rango, columna faltante, variable derivada incoherente), la corrida queda en rojo y el cambio se detiene. El contrato está en [`contrato-datos.md`](contrato-datos.md).
 
-El dashboard ayuda a estimar cuántos boletos adicionales conviene vender para un vuelo considerando el riesgo de No-show, el costo de asientos vacíos y el riesgo de negar abordaje.
-### Objetivo de negocio
+### Prueba de que detiene un cambio malo
 
-Air Lincoln enfrenta el problema de pasajeros que reservan un vuelo pero finalmente no se presentan. Cuando esto ocurre, algunos asientos pueden quedar vacíos y representar una pérdida de ingreso o capacidad desaprovechada.
+**Corrida que falló:** `PEGAR AQUÍ LA LIGA A LA CORRIDA EN ROJO`
 
-**Línea base:** operar sin una recomendación analítica de sobreventa, aceptando el riesgo de que algunos asientos queden vacíos por No-show.
-
-**Meta:** reducir el costo esperado asociado con los asientos vacíos, buscando al mismo tiempo mantener controlado el riesgo de negar abordaje a un pasajero.
-
-**Decisión que habilita:** determinar cuántos boletos adicionales conviene vender para un vuelo específico de acuerdo con sus condiciones, la probabilidad estimada de No-show y los costos definidos por el usuario.
+Cómo se rompió a propósito:
+1. Rama `prueba-dato-roto`: en la fila 6 del CSV, `No_Show` se cambió de `0` a `abc`.
+2. Push → la acción falló con «No_Show: 1 valores con texto en una columna numérica».
+3. Se borró la rama; `main` sigue en verde.

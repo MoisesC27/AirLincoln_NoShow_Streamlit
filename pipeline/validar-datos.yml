@@ -1,0 +1,24 @@
+name: Validar datos del tablero
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias de validación
+        run: pip install "pandas>=2.1" "numpy>=1.26" "scipy>=1.11" "scikit-learn>=1.4" pytest
+
+      - name: Validar el CSV contra el contrato de datos
+        run: python scripts/validar_datos.py data/AIRLINCOLNDATA2.csv
+
+      - name: Pruebas de contrato y de cálculos
+        run: python -m pytest -q

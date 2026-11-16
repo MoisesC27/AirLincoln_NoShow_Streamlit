@@ -127,12 +127,18 @@ td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
   .grow { min-height: 260px; }
   .users { margin-left: 0; }
 }
+.tg { display:inline-block; font-style:normal; font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:1px 6px; border-radius:4px; vertical-align:middle; margin-left:4px; line-height:1.5; }
+.tg-d { background:#E8ECF2; color:#3D4A5C; border:1px solid #C9D1DC; }
+.tg-c { background:#EEE9FB; color:#5B3FB8; border:1px solid #C9BCF0; }
+.tg-s { background:#FFF6E0; color:#8A5A00; border:1px dashed #D9A43A; }
+.tg-legend { display:block; font-size:11px; color:var(--muted); margin-top:2px; }
+.tg-legend .tg { margin-left:0; }
 </style>
 </head>
 <body>
 <div class="app">
   <header>
-    <div class="brand"><h1>Air Lincoln · No-show</h1><span id="h-sub">—</span></div>
+    <div class="brand"><h1>Air Lincoln · No-show</h1><span id="h-sub">—</span><span class="tg-legend"><i class="tg tg-d">Dato</i> viene del archivo · <i class="tg tg-c">Calculado</i> con el modelo o fórmulas · <i class="tg tg-s">Simulado</i> escenario con supuestos</span></div>
     <div class="users" role="tablist" aria-label="Usuario">
       <button class="user" data-user="laura" aria-selected="true"><i>L</i><div><b>Laura</b><small>Planificación</small></div></button>
       <button class="user" data-user="armando" aria-selected="false"><i>A</i><div><b>Armando</b><small>Experiencia del pasajero</small></div></button>
@@ -173,17 +179,17 @@ td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
       </div>
       <div class="right">
         <div class="hero" id="sim-hero">
-          <span>Sobreventa recomendada</span>
+          <span>Sobreventa recomendada <i class="tg tg-s">Simulado</i></span>
           <b id="sim-k">—</b>
           <p id="sim-say">—</p>
         </div>
         <div class="kpis">
-          <div class="kpi" id="sim-kp"><span>Pasajeros que no llegarán</span><b id="sim-p">—</b><small id="sim-exp">—</small></div>
-          <div class="kpi" id="sim-kd"><span>Riesgo de dejar a alguien sin asiento</span><b id="sim-deny">—</b><small>con la sobreventa recomendada</small></div>
-          <div class="kpi s-ok"><span>Ahorro frente a no sobrevender</span><b id="sim-save">—</b><small>costo esperado por vuelo</small></div>
+          <div class="kpi" id="sim-kp"><span>Pasajeros que no llegarán <i class="tg tg-c">Calculado</i></span><b id="sim-p">—</b><small id="sim-exp">—</small></div>
+          <div class="kpi" id="sim-kd"><span>Riesgo de dejar a alguien sin asiento <i class="tg tg-s">Simulado</i></span><b id="sim-deny">—</b><small>con la sobreventa recomendada</small></div>
+          <div class="kpi s-ok"><span>Ahorro frente a no sobrevender <i class="tg tg-s">Simulado</i></span><b id="sim-save">—</b><small>costo esperado por vuelo</small></div>
         </div>
         <div class="card">
-          <h2>Costo esperado por boletos extra</h2>
+          <h2>Costo esperado por boletos extra <i class="tg tg-s">Simulado</i></h2>
           <div class="grow" id="sim-chart"></div>
         </div>
       </div>
@@ -192,11 +198,11 @@ td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
     <!-- LAURA · Mapa -->
     <section class="panel g-map" data-sec="map" hidden>
       <div class="card">
-        <div class="question"><h2>¿Qué días y horarios tienen más no-show?</h2><span class="legend"><span class="s-ok">Menos de 7%</span><span class="s-warn">7% a 12%</span><span class="s-bad">Más de 12%</span></span></div>
+        <div class="question"><h2>¿Qué días y horarios tienen más no-show? <i class="tg tg-d">Dato</i></h2><span class="legend"><span class="s-ok">Menos de 7%</span><span class="s-warn">7% a 12%</span><span class="s-bad">Más de 12%</span></span></div>
         <div class="grow" id="map-chart"></div>
       </div>
       <div class="card">
-        <h2>Vuelos donde conviene sobrevender más</h2>
+        <h2>Combinaciones con mayor no-show previsto <i class="tg tg-c">Calculado</i></h2>
         <div class="rows" id="map-top"></div>
       </div>
     </section>
@@ -204,7 +210,7 @@ td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
     <!-- ARMANDO · Contactar -->
     <section class="panel g-contact" data-sec="contact" hidden>
       <div class="card">
-        <div class="question"><h2>Pasajeros con riesgo alto, por acción</h2><span class="hint">Probabilidad de no llegar ≥ 36%</span></div>
+        <div class="question"><h2>Pasajeros con riesgo alto, por acción <i class="tg tg-c">Calculado</i></h2><span class="hint">Probabilidad de no llegar ≥ 36%</span></div>
         <div class="actions" id="c-actions"></div>
       </div>
       <div class="card">
@@ -216,7 +222,7 @@ td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
     <!-- ARMANDO · Segmentos -->
     <section class="panel g-seg" data-sec="seg" hidden>
       <div class="card">
-        <div class="question"><h2>¿Qué tipo de pasajero falta más?</h2><span class="legend"><span class="s-ok">Menos que el promedio</span><span class="s-warn">Hasta 2 veces el promedio</span><span class="s-bad">Más de 2 veces</span></span></div>
+        <div class="question"><h2>¿Qué tipo de pasajero falta más? <i class="tg tg-d">Dato</i></h2><span class="legend"><span class="s-ok">Menos que el promedio</span><span class="s-warn">Hasta 2 veces el promedio</span><span class="s-bad">Más de 2 veces</span></span></div>
         <div class="grow" id="seg-chart"></div>
       </div>
     </section>
@@ -239,11 +245,11 @@ td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
         </div>
       </div>
       <div class="card" id="calc-out">
-        <h2>Probabilidad de que no se presente</h2>
+        <h2>Probabilidad de que no se presente <i class="tg tg-c">Calculado</i></h2>
         <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><span class="big" id="calc-p">—</span><span class="pill" id="calc-lvl">—</span></div>
         <p class="say" id="calc-act">—</p>
         <div class="sep"></div>
-        <h2>Lo que más pesa en su caso</h2>
+        <h2>Lo que más pesa en su caso <i class="tg tg-c">Calculado</i></h2>
         <span class="legend"><span class="s-bad">Sube el riesgo</span><span class="s-ok">Lo baja</span></span>
         <div class="grow" id="calc-chart"></div>
       </div>
@@ -254,12 +260,12 @@ td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
       <div class="kpis" id="t-kpis"></div>
       <div class="bottom">
         <div class="card">
-          <h2>Comparación de modelos</h2>
+          <h2>Comparación de modelos <i class="tg tg-c">Calculado</i></h2>
           <p class="hint">AUC en datos de prueba · 1 = perfecto · 0.5 = azar</p>
           <div class="grow" id="t-models"></div>
         </div>
         <div class="card">
-          <h2>¿Las probabilidades coinciden con la realidad?</h2>
+          <h2>¿Las probabilidades coinciden con la realidad? <i class="tg tg-c">Calculado</i></h2>
           <p class="hint">Gris: previsto · Color: real</p>
           <div class="grow" id="t-cal"></div>
         </div>
@@ -269,7 +275,7 @@ td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
     <!-- ANNA · Alertas -->
     <section class="panel g-alert" data-sec="alert" hidden>
       <div class="card">
-        <h2>Umbral de alerta</h2>
+        <h2>Umbral de alerta <i class="tg tg-c">Calculado</i></h2>
         <div class="slider"><input id="a-thr" type="range" min="0.05" max="0.9" step="0.01" aria-label="Umbral"><b id="a-thr-v">—</b><button class="btn" id="a-reset">Usar recomendado</button></div>
         <div class="conf">
           <div class="s-ok"><span>No-shows detectados</span><b id="a-vp">—</b><small>se puede actuar a tiempo</small></div>
@@ -279,7 +285,7 @@ td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
         </div>
       </div>
       <div class="card">
-        <h2>Detectados contra falsas alarmas</h2>
+        <h2>Detectados contra falsas alarmas <i class="tg tg-c">Calculado</i></h2>
         <div class="grow" id="a-chart"></div>
       </div>
     </section>
@@ -287,7 +293,7 @@ td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
     <!-- ANNA · Datos -->
     <section class="panel g-data" data-sec="data" hidden>
       <div class="card">
-        <h2>Revisión del archivo de pasajeros</h2>
+        <h2>Revisión del archivo de pasajeros <i class="tg tg-d">Dato</i></h2>
         <div class="checks" id="d-checks"></div>
       </div>
       <div class="card">
@@ -345,7 +351,7 @@ function frame(box) { box.replaceChildren(); const W = Math.max(260, box.clientW
 $('#h-sub').textContent = `${num(R.length)} pasajeros históricos · ${pct(BASE)} no se presentó`;
 
 /* ---------- Navegación ---------- */
-const state = { user: 'laura', sec: { laura: 'sim', armando: 'contact', anna: 'trust' } };
+const state = { user: (D.start && ['laura','armando','anna'].includes(D.start)) ? D.start : 'laura', sec: { laura: 'sim', armando: 'contact', anna: 'trust' } };
 const draws = {};
 function show() {
   document.querySelectorAll('.user').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.user === state.user)));
@@ -354,7 +360,11 @@ function show() {
   document.querySelectorAll('section.panel').forEach((s) => { s.hidden = s.dataset.sec !== cur; });
   requestAnimationFrame(() => draws[cur] && draws[cur]());
 }
-document.querySelectorAll('.user').forEach((b) => b.addEventListener('click', () => { state.user = b.dataset.user; show(); }));
+// Cada sesión ve solo la sección de su usuario: los demás botones se ocultan y no se puede cambiar desde aquí.
+document.querySelectorAll('.user').forEach((b) => {
+  if (D.lock && b.dataset.user !== state.user) b.hidden = true;
+  b.addEventListener('click', () => { if (D.lock && b.dataset.user !== state.user) return; state.user = b.dataset.user; show(); });
+});
 document.querySelectorAll('.sub').forEach((b) => b.addEventListener('click', () => { state.sec[state.user] = b.dataset.sec; show(); }));
 window.addEventListener('resize', () => { const c = state.sec[state.user]; draws[c] && draws[c](); });
 
@@ -576,10 +586,15 @@ draws.alert = () => {
 /* ---------- ANNA: datos ---------- */
 (() => {
   const q = D.dq; const box = $('#d-checks');
+  const probs = q.problems || [], inv = q.invalid || 0, emp = Math.max(0, (q.excluded || 0) - inv);
+  const incoh = probs.filter((p) => p.includes('no coinciden'));
   const items = [
-    ['s-ok', '✓', 'Sin datos faltantes', `Los ${num(q.rows)} registros tienen todas sus columnas.`],
+    ...(inv ? [['s-bad', '✕', `${num(inv)} filas con datos inválidos excluidas`, probs.filter((p) => !p.includes('no coinciden')).join(' · ') || 'Valores fuera del contrato.']] : []),
+    emp ? ['s-warn', '!', `${num(emp)} filas sin dato excluidas`, 'Traían NA, null, ?, - o celdas vacías.']
+        : ['s-ok', '✓', 'Sin datos faltantes', `Los ${num(q.rows)} registros analizados tienen todas sus columnas.`],
     ['s-ok', '✓', 'Sin filas duplicadas', 'Ninguna fila está repetida por completo.'],
-    ['s-ok', '✓', 'Variables combinadas correctas', 'Las columnas de clima + conexión y conexión + internacional cuadran con sus partes.'],
+    incoh.length ? ['s-bad', '✕', 'Variables combinadas con errores', incoh.join(' · ') + '. Esas filas se excluyeron.']
+                 : ['s-ok', '✓', 'Variables combinadas correctas', 'Las columnas de clima + conexión y conexión + internacional cuadran con sus partes.'],
     ['s-ok', '✓', 'Entrenamiento y prueba separados', 'Ningún pasajero aparece en dos conjuntos.'],
     ['s-ok', '✓', 'Datos estables', `Ninguna variable cambió entre entrenamiento y prueba (PSI máximo ${d3.format('.3f')(d3.max(Object.values(D.psi)))}).`],
     ['s-warn', '!', `${q.rows - q.uniq_ids} pasajeros repetidos`, 'Mismo Customer_ID con datos distintos.'],
