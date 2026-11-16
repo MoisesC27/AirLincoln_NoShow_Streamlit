@@ -1,86 +1,136 @@
 # Air Lincoln · Inteligencia de No-show (Streamlit)
 
+Dashboard interactivo desarrollado con Python y Streamlit para analizar las ausencias de pasajeros (*No-Show*), consultar indicadores, explorar información de vuelos y apoyar la toma de decisiones.
+
 ## Ejecutar en Visual Studio Code (Windows)
 
-En la terminal, dentro de esta carpeta:
+Abre la carpeta del proyecto y ejecuta los siguientes comandos en la terminal:
 
 ```powershell
-python -m venv .venv                                   # solo la primera vez (omitir si .venv ya existe)
+# Crear el entorno virtual (solo la primera vez)
+python -m venv .venv
+
+# Instalar dependencias
 .venv\Scripts\python.exe -m pip install -r requirements.txt
+
+# Ejecutar el dashboard
 .venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-La primera carga entrena los 5 modelos (≈20 s); después queda en caché.
+La primera carga puede tardar más porque se entrenan los cinco modelos. Después, los resultados pueden permanecer en caché.
 
-Pruebas de cálculo: `.venv\Scripts\python.exe -m pip install pytest` y luego `.venv\Scripts\python.exe -m pytest -q`
+## Estructura del proyecto
 
-## Estructura
-
-| Carpeta | Contenido |
+| Archivo o carpeta | Contenido |
 |---|---|
-| `app.py` | Entrada: encabezado global, selector de perfil y manejo de errores |
-| `core/` | Datos, modelos, simulador de sobreventa, calidad, reglas de intervención, seguridad y textos |
-| `ui/` | Tema oscuro, componentes, gráficas Plotly y estado de sesión |
-| `views/` | Laura, Armando, Anna y Acerca del producto |
-| `data/` | `AIRLINCOLNDATA2.csv` (y opcionalmente `particion.csv` con la partición oficial) |
-| `tests/` | Pruebas de consistencia numérica |
+| `app.py` | Entrada principal, navegación, selección de perfiles y manejo de errores |
+| `core/` | Datos, modelos, simulador de sobreventa, validaciones y reglas de intervención |
+| `ui/` | Componentes visuales, gráficas y configuración de la interfaz |
+| `views/` | Vistas de Laura, Armando, Anna y acerca del producto |
+| `data/` | Datos utilizados por el dashboard |
+| `tests/` | Pruebas automatizadas |
+| `scripts/` | Scripts de validación y utilidades |
+| `investigacion/` | Investigación del ciclo de desarrollo con IA |
+| `evidencias/` | Capturas y documentación de las mejoras |
+| `ideas/` | Propuesta individual de mejora |
+| `prompts/` | Registro de prompts utilizados |
+| `.github/workflows/` | Configuración de GitHub Actions |
+| `contrato-datos.md` | Reglas y características de las columnas publicadas |
 
-## Inicio de sesión (opcional)
+## Inicio de sesión
 
-Sin configuración la app funciona como vista pública (solo agregados). Para activar OIDC, roles y seudónimos,
-copia `.streamlit/secrets.toml.example` como `.streamlit/secrets.toml` y complétalo. En Streamlit Community Cloud,
-pega el contenido en *Settings → Secrets*.
+La aplicación contempla diferentes perfiles de usuario con permisos y vistas específicas.
 
-## Pipeline de validación de datos (Entregable 2)
+Para configurar la autenticación local, utiliza como referencia `.streamlit/secrets.toml.example` y completa los valores necesarios en `.streamlit/secrets.toml`.
 
-En cada push y pull request, GitHub Actions (`.github/workflows/validar-datos.yml`):
-1. valida `data/AIRLINCOLNDATA2.csv` contra el contrato (`python scripts/validar_datos.py`);
-2. corre las pruebas (`python -m pytest -q`).
+**Importante:** el archivo `secrets.toml` contiene información privada y no debe publicarse en GitHub.
 
-Si el dato se rompe (texto en una columna numérica, código fuera de rango, columna faltante, variable derivada incoherente), la corrida queda en rojo y el cambio se detiene. El contrato está en [`contrato-datos.md`](contrato-datos.md).
+Para una implementación en Streamlit Community Cloud, configura las credenciales desde *Settings → Secrets*.
 
-### Prueba de que detiene un cambio malo
+## Contrato y validación de datos
 
-**Corrida que falló:** `PEGAR AQUÍ LA LIGA A LA CORRIDA EN ROJO`
+El proyecto utiliza un contrato de datos para identificar los tipos esperados, la procedencia de las columnas, las unidades y las reglas aplicables a los valores faltantes.
 
-Cómo se rompió a propósito:
-1. Rama `prueba-dato-roto`: en la fila 6 del CSV, `No_Show` se cambió de `0` a `abc`.
-2. Push → la acción falló con «No_Show: 1 valores con texto en una columna numérica».
-3. Se borró la rama; `main` sigue en verde.
+El contrato se encuentra en [`contrato-datos.md`](contrato-datos.md).
 
-## Evidencia de validación automática
+La aplicación revisa los tipos antes de mostrar la información y presenta los resultados de la validación.
 
-El proyecto utiliza GitHub Actions para verificar la calidad de los datos antes de aceptar cambios.
+### Ejecutar las pruebas
 
-Se realizaron dos pruebas:
+```powershell
+.venv\Scripts\python.exe scripts/validar_datos.py
+.venv\Scripts\python.exe -m pytest -q
+```
 
-- **Prueba exitosa:** el pipeline validó correctamente los datos originales en la rama `main`.
-- **Prueba fallida intencional:** se modificó un valor de la columna `No_Show`, sustituyendo un valor numérico por `abc`, en la rama `prueba-dato-roto`.
+## Pipeline automático — Entregable 2
 
-El objetivo fue comprobar que el sistema identifica datos que incumplen el contrato establecido y detiene la validación.
+Se implementó GitHub Actions mediante `.github/workflows/validar-datos.yml`.
 
-**Evidencia de ejecución fallida:** [Pegar aquí el enlace real de GitHub Actions].
+El pipeline se ejecuta cuando se realizan cambios mediante `push` o `pull_request` y efectúa dos comprobaciones:
 
-La rama principal conserva los datos correctos y no incorpora la modificación utilizada en la prueba.
+1. Validación del archivo `data/AIRLINCOLNDATA2.csv` mediante `scripts/validar_datos.py`.
+2. Ejecución de las pruebas automatizadas mediante `pytest`.
 
-## Evidencia del pipeline de validación
+### Prueba exitosa
 
-El proyecto utiliza GitHub Actions para ejecutar pruebas automáticas que verifican la calidad de los datos.
+Se ejecutó el pipeline en la rama `main` utilizando los datos originales y se obtuvo un resultado exitoso.
 
-### Ejecución correcta
+### Prueba fallida intencional
 
-Se ejecutó el pipeline con los datos originales en la rama `main`, obteniendo un resultado exitoso.
+Para comprobar que el pipeline puede rechazar información inválida, se creó la rama `prueba-dato-roto`.
 
-### Prueba con datos incorrectos
+Se modificó un valor de la columna `No_Show`, cambiando `0` por `abc`, y se ejecutó nuevamente la validación.
 
-Se creó la rama `prueba-dato-roto` para comprobar el comportamiento del pipeline ante datos que no cumplen el contrato.
+La ejecución terminó con estado fallido. La modificación de prueba no se incorporó a `main`, conservando los datos correctos en la rama principal.
 
-En esta prueba se modificó un valor de la columna `No_Show`, sustituyendo un valor numérico por `abc`.
+**Evidencia de ejecución fallida:**
 
-El pipeline generó una ejecución fallida.
+[Ver ejecución fallida en GitHub Actions](PEGAR_AQUI_LA_URL_REAL_DE_LA_EJECUCION)
 
-**Enlace a la ejecución fallida:**
+![Ejecución fallida del pipeline](evidencias/roto.png)
 
-PEGAR_AQUI_LA_URL_REAL
+La evidencia debe comprobar que el fallo corresponde a una violación del contrato de datos.
 
-La modificación de prueba no se incorporó a la rama principal.
+## Tabla y procedencia de la información
+
+El dashboard presenta tablas que permiten consultar y ordenar la información.
+
+La tabla de análisis de vuelos utiliza `column_order` para establecer el orden de las columnas y `hide_index=True` para ocultar el índice.
+
+Además, distingue la procedencia de las cifras mediante etiquetas:
+
+- **Dato:** información obtenida del archivo original.
+- **Calculado:** resultados obtenidos mediante fórmulas o modelos.
+- **Simulado:** resultados de escenarios definidos dentro de la aplicación.
+
+Las columnas monetarias se configuran numéricamente y se presentan en pesos mexicanos (MXN).
+
+## Investigación del ciclo de desarrollo con IA
+
+Se documentó el ciclo de desarrollo descrito por Anthropic, incluyendo las etapas de planificación, diseño, construcción, pruebas, despliegue y mantenimiento.
+
+También se identificaron oportunidades para incorporar verificaciones automáticas y mejorar el proceso de trabajo del equipo.
+
+[Consultar investigación](investigacion/claude.md)
+
+## Aportación individual
+
+Durante esta semana se realizaron pequeñas correcciones en la organización y presentación del menú de opciones del dashboard.
+
+El objetivo fue mejorar la navegación y facilitar el acceso a las diferentes secciones, sin modificar los cálculos ni los datos originales.
+
+**Evidencia de las mejoras:**
+
+[Consultar documentación del menú](evidencias/mejoras_menu.md)
+
+![Menú mejorado](evidencias/menu_mejorado.png)
+
+## Propuesta individual de mejora
+
+Se documentó una propuesta de mejora para complementar las funciones del dashboard y facilitar el análisis de No-Show.
+
+[Consultar propuesta individual](ideas/A0166921.md)
+
+## Repositorio
+
+Proyecto académico desarrollado para el análisis de No-Show mediante Streamlit y herramientas de inteligencia artificial.
